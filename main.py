@@ -27,7 +27,8 @@ def get_wallet_transactions(wallet_address, blockchain):
     result = data.get('result', [])
     if not isinstance(result, list):
         print(
-            f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] Error fetching transactions for {wallet_address} on {blockchain.upper()} blockchain: {data}")
+            f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] Error fetching transactions for {wallet_address} on "
+            f"{blockchain.upper()} blockchain: {data}")
         return []
 
     return result
@@ -43,11 +44,13 @@ def send_telegram_notification(message, value, usd_value, tx_hash, blockchain):
 
     url = f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage'
     payload = {'chat_id': f'{TELEGRAM_CHAT_ID}',
-               'text': f'{message}: {etherscan_link}\nValue: {value:.6f} {blockchain.upper()} (${usd_value:.2f})',
-               'parse_mode': 'HTML'}
+               'text': f'{message}: {etherscan_link}\n'
+                       f'Value: {value:.6f} {blockchain.upper()} (${usd_value:.2f})',
+               'parse_mode': 'HTML', 'disable_web_page_preview': True}
     response = requests.post(url, data=payload)
     print(
-        f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] Telegram notification sent with message: {message}, value: {value} {blockchain.upper()} (${usd_value:.2f})")
+        f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] Telegram notification sent with message: {message}, "
+        f"value: {value} {blockchain.upper()} (${usd_value:.2f})")
     return response
 
 
@@ -194,7 +197,8 @@ def add(update, context):
 def remove(update, context):
     if len(context.args) < 2:
         context.bot.send_message(chat_id=update.message.chat_id,
-                                 text="Please provide a blockchain and wallet address to remove.\nUsage: /remove ETH 0x123456789abcdef")
+                                 text="Please provide a blockchain and wallet address to remove.\n"
+                                      "Usage: /remove ETH 0x123456789abcdef")
         return
     blockchain = context.args[0].lower()
     wallet_address = context.args[1]
