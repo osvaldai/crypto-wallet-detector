@@ -6,10 +6,10 @@ import re
 from web3 import Web3
 
 # Update the following variables with your own Etherscan and BscScan API keys and Telegram bot token
-ETHERSCAN_API_KEY = 'ITUCQBWUWMAHY8S497XQDUANG33RHMMFG8'
-BSCSCAN_API_KEY = 'VM1QB1NWTZ2SJRR46XZDPMRFY5QM2N3G9X'
-TELEGRAM_BOT_TOKEN = '5255858478:AAGzXxQ-09fVuD5yFEqFEqUG9ells2X49s4'
-TELEGRAM_CHAT_ID = '1950969694'
+ETHERSCAN_API_KEY = ''
+BSCSCAN_API_KEY = ''
+TELEGRAM_BOT_TOKEN = '5255858478:AAG'
+TELEGRAM_CHAT_ID = ''
 
 
 # Define some helper functions
